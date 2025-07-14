@@ -77,9 +77,6 @@ This project implements a production-ready, resilient LevelDB application deploy
 ### 🧱 1. Environment Setup
 
 ```bash
-# Install LVM and Restic
-sudo apt update && sudo apt install -y lvm2 restic curl nano git jq wget gnupg2 software-properties-common vim zip apt-transport-https ca-certificates
-
 # Install k3s (includes kubectl)
 curl -sfL https://get.k3s.io | sh -
 
@@ -115,6 +112,9 @@ docker login
 
 # Install Helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+# Install LVM and Restic
+sudo apt update && sudo apt install -y lvm2 restic curl nano git jq wget gnupg2 software-properties-common vim zip apt-transport-https ca-certificates
 
 # NOTE: No need to install kubectl separately — k3s includes it.
 ```
