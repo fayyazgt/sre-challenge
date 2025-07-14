@@ -1,0 +1,210 @@
+<svg viewBox="0 0 1400 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1400" height="1000" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="700" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2c3e50">
+    LevelDB SRE Challenge - Resilient Kubernetes Deployment
+  </text>
+  
+  <!-- External Layer -->
+  <rect x="50" y="60" width="1300" height="900" fill="none" stroke="#e74c3c" stroke-width="3" rx="10"/>
+  <text x="70" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#e74c3c">External Access Layer</text>
+  
+  <!-- Internet/Users -->
+  <ellipse cx="700" cy="130" rx="80" ry="30" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+  <text x="700" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Internet/Users</text>
+  
+  <!-- Load Balancer -->
+  <rect x="620" y="180" width="160" height="40" fill="#9b59b6" stroke="#8e44ad" stroke-width="2" rx="5"/>
+  <text x="700" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Load Balancer</text>
+  
+  <!-- Kubernetes Cluster -->
+  <rect x="100" y="250" width="1200" height="650" fill="#ecf0f1" stroke="#34495e" stroke-width="3" rx="10"/>
+  <text x="120" y="275" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#34495e">Kubernetes Cluster</text>
+  
+  <!-- Ingress Controller -->
+  <rect x="580" y="290" width="240" height="50" fill="#e67e22" stroke="#d35400" stroke-width="2" rx="5"/>
+  <text x="700" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Ingress Controller</text>
+  <text x="700" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">TLS/SSL Termination</text>
+  
+  <!-- Monitoring Stack -->
+  <rect x="150" y="370" width="280" height="120" fill="#16a085" stroke="#138d75" stroke-width="2" rx="5"/>
+  <text x="290" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Monitoring Stack</text>
+  
+  <!-- Prometheus -->
+  <rect x="170" y="410" width="100" height="30" fill="#27ae60" stroke="#229954" stroke-width="1" rx="3"/>
+  <text x="220" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Prometheus</text>
+  
+  <!-- Grafana -->
+  <rect x="290" y="410" width="100" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1" rx="3"/>
+  <text x="340" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Grafana</text>
+  
+  <!-- AlertManager -->
+  <rect x="170" y="450" width="100" height="30" fill="#f39c12" stroke="#e67e22" stroke-width="1" rx="3"/>
+  <text x="220" y="468" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">AlertManager</text>
+  
+  <!-- ServiceMonitor -->
+  <rect x="290" y="450" width="100" height="30" fill="#e74c3c" stroke="#c0392b" stroke-width="1" rx="3"/>
+  <text x="340" y="468" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">ServiceMonitor</text>
+  
+  <!-- Security Layer -->
+  <rect x="970" y="370" width="280" height="120" fill="#8e44ad" stroke="#7d3c98" stroke-width="2" rx="5"/>
+  <text x="1110" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Security Layer</text>
+  
+  <!-- RBAC -->
+  <rect x="990" y="410" width="100" height="30" fill="#9b59b6" stroke="#8e44ad" stroke-width="1" rx="3"/>
+  <text x="1040" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">RBAC</text>
+  
+  <!-- Network Policies -->
+  <rect x="1110" y="410" width="100" height="30" fill="#a569bd" stroke="#9b59b6" stroke-width="1" rx="3"/>
+  <text x="1160" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Network Policies</text>
+  
+  <!-- Pod Security -->
+  <rect x="990" y="450" width="100" height="30" fill="#bb8fce" stroke="#a569bd" stroke-width="1" rx="3"/>
+  <text x="1040" y="468" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Pod Security</text>
+  
+  <!-- Service Accounts -->
+  <rect x="1110" y="450" width="100" height="30" fill="#d2b4de" stroke="#bb8fce" stroke-width="1" rx="3"/>
+  <text x="1160" y="468" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Service Accounts</text>
+  
+  <!-- LevelDB Application Layer -->
+  <rect x="450" y="370" width="450" height="180" fill="#34495e" stroke="#2c3e50" stroke-width="2" rx="5"/>
+  <text x="675" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">LevelDB StatefulSet</text>
+  
+  <!-- Service -->
+  <rect x="580" y="410" width="190" height="30" fill="#5d6d7e" stroke="#566573" stroke-width="1" rx="3"/>
+  <text x="675" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">LevelDB Service</text>
+  
+  <!-- Pods -->
+  <rect x="470" y="450" width="120" height="80" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="5"/>
+  <text x="530" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Pod-0</text>
+  <text x="530" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Primary)</text>
+  <text x="530" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">LevelDB App</text>
+  <text x="530" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Health Checks</text>
+  
+  <rect x="610" y="450" width="120" height="80" fill="#52c41a" stroke="#389e0d" stroke-width="2" rx="5"/>
+  <text x="670" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Pod-1</text>
+  <text x="670" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Read Replica)</text>
+  <text x="670" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">LevelDB App</text>
+  <text x="670" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Health Checks</text>
+  
+  <rect x="750" y="450" width="120" height="80" fill="#52c41a" stroke="#389e0d" stroke-width="2" rx="5"/>
+  <text x="810" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Pod-2</text>
+  <text x="810" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Read Replica)</text>
+  <text x="810" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">LevelDB App</text>
+  <text x="810" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Health Checks</text>
+  
+  <!-- Horizontal Pod Autoscaler -->
+  <rect x="580" y="560" width="190" height="30" fill="#f39c12" stroke="#e67e22" stroke-width="2" rx="5"/>
+  <text x="675" y="578" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">HPA (1-3 replicas)</text>
+  
+  <!-- Persistent Storage Layer -->
+  <rect x="150" y="620" width="1100" height="120" fill="#2c3e50" stroke="#1b2631" stroke-width="2" rx="5"/>
+  <text x="700" y="645" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Persistent Storage Layer</text>
+  
+  <!-- PVCs -->
+  <rect x="250" y="660" width="150" height="60" fill="#48c9b0" stroke="#17a2b8" stroke-width="2" rx="5"/>
+  <text x="325" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">PVC-0</text>
+  <text x="325" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Primary DB)</text>
+  <text x="325" y="708" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">LVM Volume</text>
+  
+  <rect x="450" y="660" width="150" height="60" fill="#48c9b0" stroke="#17a2b8" stroke-width="2" rx="5"/>
+  <text x="525" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">PVC-1</text>
+  <text x="525" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Replica DB)</text>
+  <text x="525" y="708" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">LVM Volume</text>
+  
+  <rect x="650" y="660" width="150" height="60" fill="#48c9b0" stroke="#17a2b8" stroke-width="2" rx="5"/>
+  <text x="725" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">PVC-2</text>
+  <text x="725" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Replica DB)</text>
+  <text x="725" y="708" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">LVM Volume</text>
+  
+  <!-- Backup System -->
+  <rect x="900" y="660" width="280" height="60" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="5"/>
+  <text x="1040" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Backup System</text>
+  <text x="1040" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Restic + S3 Backend</text>
+  <text x="1040" y="708" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">CronJob (Every 6h)</text>
+  
+  <!-- Physical Infrastructure -->
+  <rect x="150" y="770" width="1100" height="80" fill="#616a6b" stroke="#566573" stroke-width="2" rx="5"/>
+  <text x="700" y="795" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Physical Infrastructure</text>
+  
+  <!-- LVM -->
+  <rect x="250" y="810" width="150" height="30" fill="#85929e" stroke="#717d8c" stroke-width="1" rx="3"/>
+  <text x="325" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">LVM (/dev/vgdata)</text>
+  
+  <!-- K3s -->
+  <rect x="450" y="810" width="150" height="30" fill="#85929e" stroke="#717d8c" stroke-width="1" rx="3"/>
+  <text x="525" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">K3s Cluster</text>
+  
+  <!-- Docker -->
+  <rect x="650" y="810" width="150" height="30" fill="#85929e" stroke="#717d8c" stroke-width="1" rx="3"/>
+  <text x="725" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">Docker Runtime</text>
+  
+  <!-- Host OS -->
+  <rect x="850" y="810" width="150" height="30" fill="#85929e" stroke="#717d8c" stroke-width="1" rx="3"/>
+  <text x="925" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">Host OS (Linux)</text>
+  
+  <!-- External S3 -->
+  <rect x="1350" y="660" width="120" height="60" fill="#f39c12" stroke="#e67e22" stroke-width="2" rx="5"/>
+  <text x="1410" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">S3 Bucket</text>
+  <text x="1410" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">(Backup</text>
+  <text x="1410" y="708" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Storage)</text>
+  
+  <!-- Arrows -->
+  <!-- Internet to Load Balancer -->
+  <path d="M 700 160 L 700 180" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Load Balancer to Ingress -->
+  <path d="M 700 220 L 700 290" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Ingress to Service -->
+  <path d="M 700 340 L 700 410" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Service to Pods -->
+  <path d="M 630 440 L 530 450" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 675 440 L 670 450" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 720 440 L 810 450" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Pods to PVCs -->
+  <path d="M 530 530 L 325 660" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 670 530 L 525 660" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 810 530 L 725 660" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Monitoring to Pods -->
+  <path d="M 430 430 L 470 480" stroke="#16a085" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Backup to PVCs -->
+  <path d="M 900 690 L 800 690" stroke="#e74c3c" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Backup to S3 -->
+  <path d="M 1180 690 L 1350 690" stroke="#e74c3c" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- HPA to Pods -->
+  <path d="M 675 560 L 675 530" stroke="#f39c12" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <rect x="100" y="880" width="600" height="80" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1" rx="5"/>
+  <text x="120" y="900" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">Key Features:</text>
+  <text x="120" y="920" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• StatefulSet with stable network identities</text>
+  <text x="120" y="935" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Automated backups with Restic + S3</text>
+  <text x="120" y="950" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Comprehensive monitoring (Prometheus + Grafana)</text>
+  
+  <text x="400" y="920" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Horizontal Pod Autoscaler (1-3 replicas)</text>
+  <text x="400" y="935" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Security policies (RBAC, Network Policies)</text>
+  <text x="400" y="950" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• TLS/SSL termination at ingress</text>
+  
+  <!-- Data Flow Legend -->
+  <rect x="750" y="880" width="500" height="80" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1" rx="5"/>
+  <text x="770" y="900" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">Data Flow:</text>
+  <text x="770" y="920" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">1. External traffic → Load Balancer → Ingress</text>
+  <text x="770" y="935" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">2. Ingress → Service → Pods (with load balancing)</text>
+  <text x="770" y="950" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">3. Pods → PVCs (persistent storage via LVM)</text>
+</svg>

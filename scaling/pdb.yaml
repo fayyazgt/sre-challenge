@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: leveldb-pdb
+  namespace: leveldb
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: leveldb 

@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: leveldb
+  namespace: leveldb
+spec:
+  serviceName: leveldb-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: leveldb
+  template:
+    metadata:
+      labels:
+        app: leveldb
+    spec:
+      serviceAccountName: leveldb-sa
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: leveldb
+        image: fayyazgt/leveldb-api:latest
+        ports:
+        - containerPort: 8080
+          name: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: leveldb-storage
+          mountPath: /data/leveldb
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        env:
+        - name: DB_PATH
+          value: "/data/leveldb"
+        - name: LOG_LEVEL
+          value: "INFO"
+  volumeClaimTemplates:
+  - metadata:
+      name: leveldb-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: local-lvm
+      resources:
+        requests:
+          storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leveldb-service
+  namespace: leveldb
+spec:
+  selector:
+    app: leveldb
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: leveldb-sa
+  namespace: leveldb
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: leveldb-role
+  namespace: leveldb
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "endpoints"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods/logs"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: leveldb-rolebinding
+  namespace: leveldb
+subjects:
+- kind: ServiceAccount
+  name: leveldb-sa
+  namespace: leveldb
+roleRef:
+  kind: Role
+  name: leveldb-role
+  apiGroup: rbac.authorization.k8s.io 

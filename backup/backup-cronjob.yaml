@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: leveldb-backup
+  namespace: leveldb
+spec:
+  schedule: "0 */6 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: backup-sa
+          containers:
+          - name: backup
+            image: restic/restic:latest
+            command: ["/bin/sh", "-c", "/scripts/backup.sh"]
+            volumeMounts:
+            - name: scripts
+              mountPath: /scripts
+            - name: dev
+              mountPath: /dev
+            - name: mnt
+              mountPath: /mnt
+            env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: RESTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: RESTIC_PASSWORD
+            - name: RESTIC_REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: RESTIC_REPOSITORY
+          restartPolicy: OnFailure
+          volumes:
+          - name: scripts
+            configMap:
+              name: restic-scripts
+          - name: dev
+            hostPath:
+              path: /dev
+          - name: mnt
+            hostPath:
+              path: /mnt

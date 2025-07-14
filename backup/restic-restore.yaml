@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restic-restore
+spec:
+  restartPolicy: Never
+  containers:
+  - name: restic
+    image: alpine
+    command: ["sh", "-c", "apk add --no-cache restic && sleep 3600"]
+    volumeMounts:
+    - name: leveldb-storage
+      mountPath: /data/leveldb
+    - name: restic-repo
+      mountPath: /mnt/restic-repo
+  volumes:
+  - name: leveldb-storage
+    persistentVolumeClaim:
+      claimName: leveldb-pvc
+  - name: restic-repo
+    hostPath:  # Use hostPath like in the backup job
+      path: /mnt/restic-repo
+      type: Directory

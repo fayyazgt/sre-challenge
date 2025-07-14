@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: restic-backup
+  namespace: leveldb
+spec:
+  schedule: "0 */6 * * *"  # every 6 hours
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: restic
+            image: restic/restic:latest
+            env:
+            - name: RESTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: RESTIC_PASSWORD
+            - name: RESTIC_REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: RESTIC_REPOSITORY
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_DEFAULT_REGION
+            volumeMounts:
+            - name: leveldb-storage
+              mountPath: /data
+            command:
+            - /bin/sh
+            - -c
+            - |
+              restic init || true
+              restic backup /data
+          volumes:
+          - name: leveldb-storage
+            persistentVolumeClaim:
+              claimName: leveldb-storage-leveldb-0

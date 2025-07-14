@@ -1,0 +1,18 @@
+# monitoring/values.yaml
+grafana:
+  adminPassword: prom-operator
+  service:
+    type: NodePort
+    nodePort: 32000
+  ingress:
+    enabled: false
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+defaultRules:
+  create: true
+
+alertmanager:
+  enabled: true

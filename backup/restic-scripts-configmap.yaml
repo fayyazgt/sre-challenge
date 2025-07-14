@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: restic-scripts
+  namespace: leveldb
+data:
+  backup.sh: |
+    #!/bin/bash
+    set -e
+    
+    echo "Starting LevelDB backup at $(date)"
+    
+    # Get environment variables from Kubernetes secrets
+    export RESTIC_REPOSITORY="${RESTIC_REPOSITORY}"
+    export RESTIC_PASSWORD="${RESTIC_PASSWORD}"
+    export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+    export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+    
+    # Backup directory (using local-path provisioner path)
+    BACKUP_SOURCE="/data/leveldb"
+    
+    # Check if backup source exists
+    if [ ! -d "$BACKUP_SOURCE" ]; then
+      echo "ERROR: Backup source $BACKUP_SOURCE does not exist"
+      exit 1
+    fi
+    
+    # Initialize restic repository if needed
+    restic snapshots || restic init
+    
+    # Create backup
+    echo "Creating backup of $BACKUP_SOURCE"
+    restic backup "$BACKUP_SOURCE" --verbose
+    
+    # Verify backup
+    echo "Verifying latest backup"
+    restic check
+    
+    # Clean up old snapshots (keep last 7 days)
+    echo "Cleaning up old snapshots"
+    restic forget --keep-daily 7 --prune
+    
+    echo "Backup completed successfully at $(date)"
+  
+  backup-secure.sh: |
+    #!/bin/bash
+    set -e
+    
+    echo "Starting secure LevelDB backup..."
+    
+    # Create backup directory
+    mkdir -p /backup/leveldb
+    
+    # Copy LevelDB data to backup directory
+    echo "Copying LevelDB data..."
+    cp -r /data/leveldb/* /backup/leveldb/ || {
+        echo "Failed to copy LevelDB data"
+        exit 1
+    }
+    
+    # Initialize restic repository if not exists
+    echo "Initializing restic repository..."
+    restic init --repo $RESTIC_REPOSITORY || true
+    
+    # Create backup
+    echo "Creating backup..."
+    restic backup /backup/leveldb --repo $RESTIC_REPOSITORY --verbose
+    
+    # Clean up old backups (keep last 7 days)
+    echo "Cleaning up old backups..."
+    restic forget --repo $RESTIC_REPOSITORY --keep-daily 7 --prune
+    
+    # Verify backup
+    echo "Verifying backup..."
+    restic check --repo $RESTIC_REPOSITORY
+    
+    echo "Backup completed successfully!"

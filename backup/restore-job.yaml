@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: leveldb-restore-job
+  namespace: default
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: restic-restore
+          image: restic/restic:latest
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: RESTIC_REPOSITORY
+              value: s3:s3.amazonaws.com/your-bucket-name/path/to/repo
+            - name: RESTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: restic-secret
+                  key: RESTIC_PASSWORD
+          volumeMounts:
+            - name: leveldb-data
+              mountPath: /restore-target
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "[INFO] Starting restore..."
+              restic restore latest --target /restore-target
+              echo "[INFO] Restore completed."
+      volumes:
+        - name: leveldb-data
+          persistentVolumeClaim:
+            claimName: leveldb-pvc

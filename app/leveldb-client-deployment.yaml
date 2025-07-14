@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leveldb-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: leveldb-client
+  template:
+    metadata:
+      labels:
+        app: leveldb-client
+    spec:
+      containers:
+      - name: leveldb-client
+        image: fayyazgt/leveldb-client:latest
+        ports:
+        - containerPort: 3000
